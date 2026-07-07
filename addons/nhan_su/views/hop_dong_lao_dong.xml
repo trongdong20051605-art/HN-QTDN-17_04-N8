@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hop_dong_lao_dong_tree" model="ir.ui.view">
+            <field name="name">hop_dong_lao_dong.tree</field>
+            <field name="model">hop_dong_lao_dong</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách hợp đồng lao động">
+                    <field name="so_hop_dong"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="loai_hop_dong"/>
+                    <field name="ngay_ky"/>
+                    <field name="ngay_bat_dau"/>
+                    <field name="ngay_ket_thuc"/>
+                    <field name="muc_luong"/>
+                    <field name="phu_cap"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hop_dong_lao_dong_form" model="ir.ui.view">
+            <field name="name">hop_dong_lao_dong.form</field>
+            <field name="model">hop_dong_lao_dong</field>
+            <field name="arch" type="xml">
+                <form string="Hợp đồng lao động">
+                    <sheet>
+
+                        <group string="Thông tin hợp đồng">
+                            <group>
+                                <field name="so_hop_dong"/>
+                                <field name="nhan_vien_id"/>
+                                <field name="loai_hop_dong"/>
+                                <field name="trang_thai"/>
+                            </group>
+                            <group>
+                                <field name="ngay_ky"/>
+                                <field name="ngay_bat_dau"/>
+                                <field name="ngay_ket_thuc"/>
+                            </group>
+                        </group>
+
+                        <group string="Thông tin lương">
+                            <group>
+                                <field name="muc_luong"/>
+                                <field name="phu_cap"/>
+                            </group>
+                        </group>
+
+                        <group string="Nội dung công việc">
+                            <field name="noi_dung_cong_viec"/>
+                        </group>
+
+                        <group string="Ghi chú">
+                            <field name="ghi_chu"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hop_dong_lao_dong_search" model="ir.ui.view">
+            <field name="name">hop_dong_lao_dong.search</field>
+            <field name="model">hop_dong_lao_dong</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm hợp đồng lao động">
+                    <field name="so_hop_dong"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="loai_hop_dong"/>
+                    <field name="trang_thai"/>
+
+                    <filter string="Đang hiệu lực"
+                            name="filter_hieu_luc"
+                            domain="[('trang_thai','=','hieu_luc')]"/>
+
+                    <filter string="Sắp hết hạn"
+                            name="filter_sap_het_han"
+                            domain="[('trang_thai','=','sap_het_han')]"/>
+
+                    <filter string="Hết hạn"
+                            name="filter_het_han"
+                            domain="[('trang_thai','=','het_han')]"/>
+
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Nhân viên"
+                                name="group_nhan_vien"
+                                context="{'group_by':'nhan_vien_id'}"/>
+
+                        <filter string="Loại hợp đồng"
+                                name="group_loai_hop_dong"
+                                context="{'group_by':'loai_hop_dong'}"/>
+
+                        <filter string="Trạng thái"
+                                name="group_trang_thai"
+                                context="{'group_by':'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hop_dong_lao_dong" model="ir.actions.act_window">
+            <field name="name">Hợp đồng lao động</field>
+            <field name="res_model">hop_dong_lao_dong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_hop_dong_lao_dong_search"/>
+        </record>
+
+    </data>
+</odoo>

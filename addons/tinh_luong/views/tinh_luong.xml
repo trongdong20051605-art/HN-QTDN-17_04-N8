@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- FORM PHIẾU LƯƠNG -->
+        <record id="view_tinh_luong_form" model="ir.ui.view">
+            <field name="name">tinh_luong.form</field>
+            <field name="model">tinh_luong</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu lương">
+                    <header>
+                        <button name="action_gui_phe_duyet"
+                                type="object"
+                                string="Gửi phê duyệt"
+                                class="btn-primary"
+                                attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}"/>
+
+                        <button name="action_phe_duyet"
+                                type="object"
+                                string="Phê duyệt"
+                                class="btn-success"
+                                attrs="{'invisible': [('trang_thai', '!=', 'cho_duyet')]}"/>
+
+                        <button name="action_tu_choi"
+                                type="object"
+                                string="Từ chối"
+                                class="btn-secondary"
+                                attrs="{'invisible': [('trang_thai', '!=', 'cho_duyet')]}"/>
+
+                        <button name="action_da_tra_luong"
+                                type="object"
+                                string="Đã trả lương"
+                                class="btn-success"
+                                attrs="{'invisible': [('trang_thai', '!=', 'da_duyet')]}"/>
+
+                        <button name="action_dat_ve_nhap"
+                                type="object"
+                                string="Đưa về nháp"
+                                attrs="{'invisible': [('trang_thai', 'not in', ['tu_choi', 'cho_duyet'])]}"/>
+
+                        <field name="trang_thai"
+                               widget="statusbar"
+                               statusbar_visible="nhap,cho_duyet,da_duyet,da_tra"/>
+                    </header>
+
+                    <sheet>
+                        <group string="Thông tin nhân viên">
+                            <group>
+                                <field name="nhan_vien_id"
+                                    options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                <field name="hop_dong_id"/>
+                                <field name="ma_dinh_danh" readonly="1"/>
+                                <field name="phong_ban_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="chuc_vu_id" readonly="1"/>
+                                <field name="thang"/>
+                                <field name="nam"/>
+                            </group>
+                        </group>
+
+                        <group string="Dữ liệu từ nhân sự">
+                            <group>
+                                <field name="luong_co_ban" readonly="1"/>
+                                <field name="phu_cap" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="ty_le_bao_hiem" readonly="1"/>
+                                <field name="tien_bao_hiem" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Dữ liệu từ chấm công">
+                            <group>
+                                <field name="tong_ngay_cong" readonly="1"/>
+                                <field name="tong_gio_lam_them" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="tien_lam_them" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Thưởng, khấu trừ và thực lĩnh">
+                            <group>
+                                <field name="thuong"/>
+                                <field name="khau_tru"/>
+                            </group>
+                            <group>
+                                <field name="thuc_linh" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Thông tin phê duyệt">
+                            <group>
+                                <field name="nguoi_phe_duyet_id" readonly="1"/>
+                                <field name="ngay_phe_duyet" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="ly_do_tu_choi"/>
+                                <field name="ghi_chu_luong"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- TREE / BẢNG LƯƠNG -->
+        <record id="view_tinh_luong_tree" model="ir.ui.view">
+            <field name="name">tinh_luong.tree</field>
+            <field name="model">tinh_luong</field>
+            <field name="arch" type="xml">
+                <tree string="Bảng lương nhân viên">
+                    <field name="nhan_vien_id"
+                        options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="luong_co_ban"/>
+                    <field name="tong_ngay_cong"/>
+                    <field name="tong_gio_lam_them"/>
+                    <field name="tien_lam_them"/>
+                    <field name="tien_bao_hiem"/>
+                    <field name="thuong"/>
+                    <field name="khau_tru"/>
+                    <field name="thuc_linh"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- SEARCH -->
+        <record id="view_tinh_luong_search" model="ir.ui.view">
+            <field name="name">tinh_luong.search</field>
+            <field name="model">tinh_luong</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm bảng lương">
+                    <field name="nhan_vien_id"
+                        options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="trang_thai"/>
+
+                    <filter string="Nháp"
+                            name="filter_nhap"
+                            domain="[('trang_thai','=','nhap')]"/>
+
+                    <filter string="Chờ phê duyệt"
+                            name="filter_cho_duyet"
+                            domain="[('trang_thai','=','cho_duyet')]"/>
+
+                    <filter string="Đã phê duyệt"
+                            name="filter_da_duyet"
+                            domain="[('trang_thai','=','da_duyet')]"/>
+
+                    <filter string="Đã trả lương"
+                            name="filter_da_tra"
+                            domain="[('trang_thai','=','da_tra')]"/>
+
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Nhân viên"
+                                name="group_nhan_vien"
+                                context="{'group_by':'nhan_vien_id'}"/>
+
+                        <filter string="Phòng ban"
+                                name="group_phong_ban"
+                                context="{'group_by':'phong_ban_id'}"/>
+
+                        <filter string="Chức vụ"
+                                name="group_chuc_vu"
+                                context="{'group_by':'chuc_vu_id'}"/>
+
+                        <filter string="Tháng"
+                                name="group_thang"
+                                context="{'group_by':'thang'}"/>
+
+                        <filter string="Năm"
+                                name="group_nam"
+                                context="{'group_by':'nam'}"/>
+
+                        <filter string="Trạng thái"
+                                name="group_trang_thai"
+                                context="{'group_by':'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- PIVOT BÁO CÁO -->
+        <record id="view_tinh_luong_pivot" model="ir.ui.view">
+            <field name="name">tinh_luong.pivot</field>
+            <field name="model">tinh_luong</field>
+            <field name="arch" type="xml">
+                <pivot string="Báo cáo lương">
+                    <field name="phong_ban_id" type="row"/>
+                    <field name="thang" type="col"/>
+                    <field name="thuc_linh" type="measure"/>
+                    <field name="tien_bao_hiem" type="measure"/>
+                    <field name="tien_lam_them" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- GRAPH BÁO CÁO -->
+        <record id="view_tinh_luong_graph" model="ir.ui.view">
+            <field name="name">tinh_luong.graph</field>
+            <field name="model">tinh_luong</field>
+            <field name="arch" type="xml">
+                <graph string="Biểu đồ lương" type="bar">
+                    <field name="phong_ban_id"/>
+                    <field name="thuc_linh" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- ACTIONS -->
+        <record id="action_tinh_luong" model="ir.actions.act_window">
+            <field name="name">Phiếu lương</field>
+            <field name="res_model">tinh_luong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tinh_luong_search"/>
+        </record>
+
+        <record id="action_bang_luong" model="ir.actions.act_window">
+            <field name="name">Bảng lương</field>
+            <field name="res_model">tinh_luong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tinh_luong_search"/>
+        </record>
+
+        <record id="action_sao_ke_ca_nhan" model="ir.actions.act_window">
+            <field name="name">Sao kê cá nhân</field>
+            <field name="res_model">tinh_luong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tinh_luong_search"/>
+        </record>
+
+        <record id="action_bao_cao_luong" model="ir.actions.act_window">
+            <field name="name">Báo cáo lương</field>
+            <field name="res_model">tinh_luong</field>
+            <field name="view_mode">pivot,graph,tree,form</field>
+            <field name="search_view_id" ref="view_tinh_luong_search"/>
+        </record>
+
+    </data>
+</odoo>

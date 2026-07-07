@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_thong_bao_api_root"
+                  name="Thông báo API"
+                  sequence="50"/>
+
+        <menuitem id="menu_gui_telegram"
+                  name="Gửi thông báo Telegram"
+                  parent="menu_thong_bao_api_root"
+                  action="action_telegram_service"
+                  sequence="1"/>
+
+        <menuitem id="menu_cau_hinh_telegram"
+                  name="Cấu hình Telegram"
+                  parent="menu_thong_bao_api_root"
+                  action="action_cau_hinh_telegram"
+                  sequence="2"/>
+
+        <menuitem id="menu_lich_su_thong_bao_telegram"
+                  name="Lịch sử thông báo"
+                  parent="menu_thong_bao_api_root"
+                  action="action_lich_su_thong_bao_telegram"
+                  sequence="3"/>
+
+    </data>
+</odoo>

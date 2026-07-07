@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cau_hinh_telegram_user,cau_hinh_telegram_user,model_cau_hinh_telegram,base.group_user,1,1,1,1
+access_lich_su_thong_bao_telegram_user,lich_su_thong_bao_telegram_user,model_lich_su_thong_bao_telegram,base.group_user,1,1,1,1
+access_telegram_service_user,telegram_service_user,model_telegram_service,base.group_user,1,1,1,1

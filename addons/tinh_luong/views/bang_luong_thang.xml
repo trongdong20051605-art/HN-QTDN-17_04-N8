@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_bang_luong_thang_tree" model="ir.ui.view">
+            <field name="name">bang_luong_thang.tree</field>
+            <field name="model">bang_luong_thang</field>
+            <field name="arch" type="xml">
+                <tree string="Bảng lương tháng">
+                    <field name="ten_bang_luong"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="phong_ban_id"/>
+                    <field name="tong_nhan_vien"/>
+                    <field name="tong_luong_co_ban" sum="Tổng lương cơ bản"/>
+                    <field name="tong_tien_lam_them" sum="Tổng làm thêm"/>
+                    <field name="tong_bao_hiem" sum="Tổng bảo hiểm"/>
+                    <field name="tong_thuong" sum="Tổng thưởng"/>
+                    <field name="tong_khau_tru" sum="Tổng khấu trừ"/>
+                    <field name="tong_thuc_linh" sum="Tổng thực lĩnh"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_bang_luong_thang_form" model="ir.ui.view">
+            <field name="name">bang_luong_thang.form</field>
+            <field name="model">bang_luong_thang</field>
+            <field name="arch" type="xml">
+                <form string="Bảng lương tháng">
+                    <header>
+                        <button name="action_tong_hop_bang_luong"
+                                type="object"
+                                string="Tổng hợp bảng lương"
+                                class="btn-primary"
+                                attrs="{'invisible': [('trang_thai', '=', 'da_chot')]}"/>
+
+                        <button name="action_chot_bang_luong"
+                                type="object"
+                                string="Chốt bảng lương"
+                                class="btn-success"
+                                attrs="{'invisible': [('trang_thai', '!=', 'da_tong_hop')]}"/>
+
+                        <button name="action_dat_ve_nhap"
+                                type="object"
+                                string="Đưa về nháp"
+                                attrs="{'invisible': [('trang_thai', '=', 'nhap')]}"/>
+
+                        <field name="trang_thai"
+                               widget="statusbar"
+                               statusbar_visible="nhap,da_tong_hop,da_chot"/>
+                    </header>
+
+                    <sheet>
+                        <group string="Thông tin bảng lương">
+                            <group>
+                                <field name="ten_bang_luong" readonly="1"/>
+                                <field name="thang"/>
+                                <field name="nam"/>
+                            </group>
+                            <group>
+                                <field name="phong_ban_id"/>
+                                <field name="tong_nhan_vien" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Tổng hợp tiền lương">
+                            <group>
+                                <field name="tong_luong_co_ban" readonly="1"/>
+                                <field name="tong_tien_lam_them" readonly="1"/>
+                                <field name="tong_bao_hiem" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="tong_thuong" readonly="1"/>
+                                <field name="tong_khau_tru" readonly="1"/>
+                                <field name="tong_thuc_linh" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Chi tiết nhân viên">
+                                <field name="line_ids" readonly="1">
+                                    <tree string="Chi tiết bảng lương">
+                                        <field name="nhan_vien_id"
+                                            options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                        <field name="ma_dinh_danh"/>
+                                        <field name="phong_ban_id"/>
+                                        <field name="chuc_vu_id"/>
+                                        <field name="luong_co_ban"/>
+                                        <field name="tong_ngay_cong"/>
+                                        <field name="tong_gio_lam_them"/>
+                                        <field name="tien_lam_them"/>
+                                        <field name="tien_bao_hiem"/>
+                                        <field name="thuong"/>
+                                        <field name="khau_tru"/>
+                                        <field name="thuc_linh"/>
+                                        <field name="trang_thai_luong"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="Ghi chú">
+                                <field name="ghi_chu"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bang_luong_thang_search" model="ir.ui.view">
+            <field name="name">bang_luong_thang.search</field>
+            <field name="model">bang_luong_thang</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm bảng lương tháng">
+                    <field name="ten_bang_luong"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="phong_ban_id"/>
+                    <field name="trang_thai"/>
+
+                    <filter string="Nháp"
+                            name="filter_nhap"
+                            domain="[('trang_thai','=','nhap')]"/>
+
+                    <filter string="Đã tổng hợp"
+                            name="filter_da_tong_hop"
+                            domain="[('trang_thai','=','da_tong_hop')]"/>
+
+                    <filter string="Đã chốt"
+                            name="filter_da_chot"
+                            domain="[('trang_thai','=','da_chot')]"/>
+
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Tháng"
+                                name="group_thang"
+                                context="{'group_by':'thang'}"/>
+
+                        <filter string="Năm"
+                                name="group_nam"
+                                context="{'group_by':'nam'}"/>
+
+                        <filter string="Phòng ban"
+                                name="group_phong_ban"
+                                context="{'group_by':'phong_ban_id'}"/>
+
+                        <filter string="Trạng thái"
+                                name="group_trang_thai"
+                                context="{'group_by':'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_bang_luong" model="ir.actions.act_window">
+            <field name="name">Bảng lương tháng</field>
+            <field name="res_model">bang_luong_thang</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_bang_luong_thang_search"/>
+        </record>
+
+    </data>
+</odoo>

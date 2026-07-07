@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_phong_ban_mo_rong"
+                  name="Quản lý phòng ban"
+                  parent="menu_root"
+                  action="action_phong_ban"
+                  sequence="2"/>
+
+        <menuitem id="menu_quan_ly_chuc_vu_mo_rong"
+                  name="Quản lý chức vụ"
+                  parent="menu_root"
+                  action="action_chuc_vu"
+                  sequence="3"/>
+
+        <menuitem id="menu_hop_dong_lao_dong_mo_rong"
+                  name="Hợp đồng lao động"
+                  parent="menu_root"
+                  action="action_hop_dong_lao_dong"
+                  sequence="4"/>
+
+    </data>
+</odoo>

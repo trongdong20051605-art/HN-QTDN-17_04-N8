@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_canh_bao_cham_cong_tree" model="ir.ui.view">
+            <field name="name">canh_bao_cham_cong.tree</field>
+            <field name="model">canh_bao_cham_cong</field>
+            <field name="arch" type="xml">
+                <tree string="Cảnh báo chấm công">
+                    <field name="nhan_vien_id"
+                        options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="loai_canh_bao"/>
+                    <field name="noi_dung"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="da_xu_ly"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_canh_bao_cham_cong" model="ir.actions.act_window">
+            <field name="name">Cảnh báo chấm công</field>
+            <field name="res_model">canh_bao_cham_cong</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

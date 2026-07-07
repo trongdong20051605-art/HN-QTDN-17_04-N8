@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_tinh_luong_root"
+                  name="Tính lương"
+                  sequence="30"/>
+
+        <menuitem id="menu_tinh_luong"
+                  name="Phiếu lương"
+                  parent="menu_tinh_luong_root"
+                  action="action_tinh_luong"
+                  sequence="1"/>
+
+        <menuitem id="menu_bang_luong"
+                  name="Bảng lương"
+                  parent="menu_tinh_luong_root"
+                  action="action_bang_luong"
+                  sequence="2"/>
+
+        <menuitem id="menu_sao_ke_ca_nhan"
+                  name="Sao kê cá nhân"
+                  parent="menu_tinh_luong_root"
+                  action="action_sao_ke_ca_nhan"
+                  sequence="3"/>
+
+        <menuitem id="menu_bao_cao_luong"
+                  name="Báo cáo lương"
+                  parent="menu_tinh_luong_root"
+                  action="action_bao_cao_luong"
+                  sequence="4"/>
+
+    </data>
+</odoo>

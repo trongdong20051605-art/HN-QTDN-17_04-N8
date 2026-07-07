@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_phong_ban_tree" model="ir.ui.view">
+            <field name="name">phong_ban.tree</field>
+            <field name="model">phong_ban</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách phòng ban">
+                    <field name="ma_phong_ban"/>
+                    <field name="ten_phong_ban"/>
+                    <field name="truong_phong_id"/>
+                    <field name="so_nhan_vien"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_phong_ban_form" model="ir.ui.view">
+            <field name="name">phong_ban.form</field>
+            <field name="model">phong_ban</field>
+            <field name="arch" type="xml">
+                <form string="Phòng ban">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ma_phong_ban"/>
+                                <field name="ten_phong_ban"/>
+                                <field name="truong_phong_id"/>
+                            </group>
+                            <group>
+                                <field name="ngay_thanh_lap"/>
+                                <field name="so_nhan_vien" readonly="1"/>
+                                <field name="trang_thai"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="mo_ta"/>
+                        </group>
+<notebook>
+    <page string="Danh sách nhân viên">
+        <field name="nhan_vien_ids">
+            <tree>
+                <field name="ma_dinh_danh"/>
+                <field name="ho_dem"/>
+                <field name="ten"/>
+                <field name="ngay_sinh"/>
+                <field name="so_dien_thoai"/>
+                <field name="email"/>
+                <field name="trang_thai_lam_viec"/>
+            </tree>
+        </field>
+    </page>
+</notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_phong_ban" model="ir.actions.act_window">
+            <field name="name">Phòng ban</field>
+            <field name="res_model">phong_ban</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

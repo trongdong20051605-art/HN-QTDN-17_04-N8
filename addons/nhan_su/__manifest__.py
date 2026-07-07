@@ -31,6 +31,11 @@
         'views/lich_su_cong_tac.xml',
         'views/chung_chi_bang_cap.xml',
         'views/danh_sach_chung_chi_bang_cap.xml',
+
+        'views/phong_ban.xml',
+        'views/hop_dong_lao_dong.xml',
+        'views/menu_mo_rong.xml',
+
         'views/menu.xml',
     ],
     # only loaded in demonstration mode

@@ -1,0 +1,15 @@
+.o_main_navbar {
+    background-color: #2f5d8c !important;
+}
+
+.mk_apps_sidebar,
+.mk_apps_sidebar_panel,
+.mk_sidebar,
+.mk_sidebar_type_large,
+.mk_sidebar_type_small {
+    background-color: #2f5d8c !important;
+}
+
+.o_list_view {
+    border-bottom: 4px solid #2f5d8c !important;
+}

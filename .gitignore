@@ -51,3 +51,5 @@ package.json
 /src/
 /venv/
 /venv_15_01/
+addons/btl_odoo_modules.zip
+addons/tro_ly_ai/

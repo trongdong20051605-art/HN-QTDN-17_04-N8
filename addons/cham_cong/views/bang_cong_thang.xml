@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_bang_cong_thang_tree" model="ir.ui.view">
+            <field name="name">bang_cong_thang.tree</field>
+            <field name="model">bang_cong_thang</field>
+            <field name="arch" type="xml">
+                <tree string="Bảng công tháng">
+                    <field name="nhan_vien_id"
+                        options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="phong_ban_id"/>
+                    <field name="chuc_vu_id"/>
+                    <field name="thang"/>
+                    <field name="nam"/>
+                    <field name="tong_ngay_cong"/>
+                    <field name="tong_gio_lam_them"/>
+                    <field name="so_lan_di_muon"/>
+                    <field name="so_ngay_vang"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_bang_cong_thang_form" model="ir.ui.view">
+            <field name="name">bang_cong_thang.form</field>
+            <field name="model">bang_cong_thang</field>
+            <field name="arch" type="xml">
+                <form string="Bảng công tháng">
+                    <header>
+                        <button name="action_tong_hop_cong"
+                                type="object"
+                                string="Tổng hợp công"
+                                class="btn-primary"
+                                attrs="{'invisible': [('trang_thai', 'not in', ['nhap', 'tu_choi'])]}"/>
+
+                        <button name="action_duyet_bang_cong"
+                                type="object"
+                                string="Duyệt bảng công"
+                                class="btn-success"
+                                attrs="{'invisible': [('trang_thai', '!=', 'da_tong_hop')]}"/>
+
+                        <button name="action_tu_choi"
+                                type="object"
+                                string="Từ chối"
+                                attrs="{'invisible': [('trang_thai', '!=', 'da_tong_hop')]}"/>
+
+                        <field name="trang_thai"
+                               widget="statusbar"
+                               statusbar_visible="nhap,da_tong_hop,da_duyet"/>
+                    </header>
+
+                    <sheet>
+                        <group string="Thông tin nhân viên">
+                            <group>
+                                <field name="nhan_vien_id"
+                                    options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                <field name="ma_dinh_danh" readonly="1"/>
+                                <field name="phong_ban_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="chuc_vu_id" readonly="1"/>
+                                <field name="thang"/>
+                                <field name="nam"/>
+                            </group>
+                        </group>
+
+                        <group string="Kết quả tổng hợp công">
+                            <group>
+                                <field name="tong_ngay_cong" readonly="1"/>
+                                <field name="tong_gio_lam_them" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="so_lan_di_muon" readonly="1"/>
+                                <field name="so_ngay_vang" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <field name="ghi_chu"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_bang_cong_thang" model="ir.actions.act_window">
+            <field name="name">Bảng công tháng</field>
+            <field name="res_model">bang_cong_thang</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

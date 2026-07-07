@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- FORM VIEW CHẤM CÔNG -->
+        <record id="view_cham_cong_form" model="ir.ui.view">
+            <field name="name">cham_cong.form</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <form string="Chấm công">
+                    <sheet>
+                        <group string="Thông tin nhân viên">
+                            <group>
+                                <field name="nhan_vien_id"
+                                    options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                                <field name="ma_dinh_danh" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="phong_ban_id" readonly="1"/>
+                                <field name="chuc_vu_id" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Thông tin chấm công">
+                            <group>
+                                <field name="ngay_cham_cong"/>
+                                <field name="gio_vao"/>
+                                <field name="gio_ra"/>
+                            </group>
+                            <group>
+                                <field name="so_gio_lam" readonly="1"/>
+                                <field name="gio_lam_them"/>
+                                <field name="trang_thai"/>
+                            </group>
+                        </group>
+
+                        <group string="Ghi chú">
+                            <field name="ghi_chu"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- TREE VIEW CHẤM CÔNG -->
+        <record id="view_cham_cong_tree" model="ir.ui.view">
+            <field name="name">cham_cong.tree</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách chấm công">
+                    <field name="ngay_cham_cong"/>
+                    <field name="nhan_vien_id"
+                        options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="ma_dinh_danh"/>
+                    <field name="phong_ban_id"/>
+                    <field name="gio_vao"/>
+                    <field name="gio_ra"/>
+                    <field name="so_gio_lam"/>
+                    <field name="gio_lam_them"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- SEARCH VIEW CHẤM CÔNG -->
+        <record id="view_cham_cong_search" model="ir.ui.view">
+            <field name="name">cham_cong.search</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm chấm công">
+                    <field name="nhan_vien_id"
+                        options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                    <field name="ngay_cham_cong"/>
+                    <field name="phong_ban_id"/>
+                    <field name="trang_thai"/>
+
+                    <filter string="Có mặt"
+                            name="filter_co_mat"
+                            domain="[('trang_thai','=','co_mat')]"/>
+
+                    <filter string="Đi muộn"
+                            name="filter_di_muon"
+                            domain="[('trang_thai','=','di_muon')]"/>
+
+                    <filter string="Vắng"
+                            name="filter_vang"
+                            domain="[('trang_thai','=','vang')]"/>
+
+                    <filter string="Nghỉ phép"
+                            name="filter_nghi_phep"
+                            domain="[('trang_thai','=','nghi_phep')]"/>
+
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Nhân viên"
+                                name="group_nhan_vien"
+                                context="{'group_by':'nhan_vien_id'}"/>
+
+                        <filter string="Phòng ban"
+                                name="group_phong_ban"
+                                context="{'group_by':'phong_ban_id'}"/>
+
+                        <filter string="Trạng thái"
+                                name="group_trang_thai"
+                                context="{'group_by':'trang_thai'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- ACTION CHẤM CÔNG -->
+        <record id="action_cham_cong" model="ir.actions.act_window">
+            <field name="name">Chấm công</field>
+            <field name="res_model">cham_cong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_cham_cong_search"/>
+        </record>
+
+    </data>
+</odoo>

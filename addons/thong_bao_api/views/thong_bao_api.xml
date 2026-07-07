@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_cau_hinh_telegram_tree" model="ir.ui.view">
+            <field name="name">cau_hinh_telegram.tree</field>
+            <field name="model">cau_hinh_telegram</field>
+            <field name="arch" type="xml">
+                <tree string="Cấu hình Telegram">
+                    <field name="ten_cau_hinh"/>
+                    <field name="chat_id"/>
+                    <field name="trang_thai"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_cau_hinh_telegram_form" model="ir.ui.view">
+            <field name="name">cau_hinh_telegram.form</field>
+            <field name="model">cau_hinh_telegram</field>
+            <field name="arch" type="xml">
+                <form string="Cấu hình Telegram">
+                    <header>
+                        <button name="action_kiem_tra_ket_noi"
+                                type="object"
+                                string="Kiểm tra kết nối"
+                                class="btn-primary"/>
+                        <field name="trang_thai"
+                               widget="statusbar"
+                               statusbar_visible="nhap,da_kiem_tra,loi"/>
+                    </header>
+
+                    <sheet>
+                        <group string="Thông tin API">
+                            <field name="ten_cau_hinh"/>
+                            <field name="bot_token" password="True"/>
+                            <field name="chat_id"/>
+                        </group>
+
+                        <group string="Kết quả kiểm tra API">
+                            <field name="ket_qua_kiem_tra" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_lich_su_thong_bao_telegram_tree" model="ir.ui.view">
+            <field name="name">lich_su_thong_bao_telegram.tree</field>
+            <field name="model">lich_su_thong_bao_telegram</field>
+            <field name="arch" type="xml">
+                <tree string="Lịch sử thông báo Telegram">
+                    <field name="tieu_de"/>
+                    <field name="loai_thong_bao"/>
+                    <field name="trang_thai_gui"/>
+                    <field name="ngay_gui"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_lich_su_thong_bao_telegram_form" model="ir.ui.view">
+            <field name="name">lich_su_thong_bao_telegram.form</field>
+            <field name="model">lich_su_thong_bao_telegram</field>
+            <field name="arch" type="xml">
+                <form string="Lịch sử thông báo Telegram">
+                    <header>
+                        <button name="action_gui_telegram"
+                                type="object"
+                                string="Gửi lại Telegram"
+                                class="btn-primary"/>
+                    </header>
+
+                    <sheet>
+                        <group string="Thông tin thông báo">
+                            <group>
+                                <field name="tieu_de"/>
+                                <field name="loai_thong_bao"/>
+                            </group>
+                            <group>
+                                <field name="trang_thai_gui" readonly="1"/>
+                                <field name="ngay_gui" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <group string="Nội dung gửi API">
+                            <field name="noi_dung"/>
+                        </group>
+
+                        <group string="Kết quả API trả về">
+                            <field name="ket_qua_api" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_telegram_service_form" model="ir.ui.view">
+            <field name="name">telegram_service.form</field>
+            <field name="model">telegram_service</field>
+            <field name="arch" type="xml">
+                <form string="Gửi thông báo Telegram">
+                    <sheet>
+                        <group string="Gửi thông báo nghiệp vụ qua Telegram API">
+                            <field name="name" readonly="1"/>
+                        </group>
+
+                        <footer>
+                            <button name="action_tao_thong_bao_tong_quan_he_thong"
+                                    type="object"
+                                    string="Gửi tổng quan hệ thống"
+                                    class="btn-primary"/>
+
+                            <button name="action_tao_thong_bao_canh_bao_cham_cong"
+                                    type="object"
+                                    string="Gửi cảnh báo chấm công"
+                                    class="btn-primary"/>
+
+                            <button name="action_tao_thong_bao_di_muon_vang_mat"
+                                    type="object"
+                                    string="Gửi đi muộn/vắng mặt"
+                                    class="btn-warning"/>
+
+                            <button name="action_tao_thong_bao_luong_cho_duyet"
+                                    type="object"
+                                    string="Gửi phiếu lương chờ duyệt"
+                                    class="btn-success"/>
+
+                            <button name="action_tao_thong_bao_tong_hop_luong"
+                                    type="object"
+                                    string="Gửi tổng hợp lương"
+                                    class="btn-success"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cau_hinh_telegram" model="ir.actions.act_window">
+            <field name="name">Cấu hình Telegram</field>
+            <field name="res_model">cau_hinh_telegram</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_lich_su_thong_bao_telegram" model="ir.actions.act_window">
+            <field name="name">Lịch sử thông báo</field>
+            <field name="res_model">lich_su_thong_bao_telegram</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_telegram_service" model="ir.actions.act_window">
+            <field name="name">Gửi thông báo Telegram</field>
+            <field name="res_model">telegram_service</field>
+            <field name="view_mode">form</field>
+            <field name="target">current</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tinh_luong_user,tinh_luong_user,model_tinh_luong,base.group_user,1,1,1,1
+access_bang_luong_thang_user,bang_luong_thang_user,model_bang_luong_thang,base.group_user,1,1,1,1
+access_bang_luong_thang_line_user,bang_luong_thang_line_user,model_bang_luong_thang_line,base.group_user,1,1,1,1

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="menu_cham_cong_root"
+                  name="Chấm công"
+                  sequence="20"/>
+
+        <menuitem id="menu_cham_cong"
+                  name="Danh sách chấm công"
+                  parent="menu_cham_cong_root"
+                  action="action_cham_cong"
+                  sequence="1"/>
+        <menuitem id="menu_bang_cong_thang"
+                  name="Bảng công tháng"
+                  parent="menu_cham_cong_root"
+                  action="action_bang_cong_thang"
+                  sequence="2"/>
+        <menuitem id="menu_canh_bao_cham_cong"
+                  name="Cảnh báo chấm công"
+                  parent="menu_cham_cong_root"
+                  action="action_canh_bao_cham_cong"
+                  sequence="3"/>
+
+    </data>
+</odoo>
