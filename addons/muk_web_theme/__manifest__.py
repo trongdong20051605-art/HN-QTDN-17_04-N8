@@ -47,6 +47,7 @@
     ],
     'assets': {
         'web.assets_qweb': [
+            'muk_web_theme/static/src/css/custom_color.css',
             'muk_web_theme/static/src/**/*.xml',
         ],
         'web._assets_primary_variables': [

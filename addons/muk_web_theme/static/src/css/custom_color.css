@@ -1,0 +1,42 @@
+/* Đổi màu thanh menu trái */
+.o_main_navbar,
+.o_main_navbar > ul > li > a,
+.o_main_navbar .dropdown-toggle {
+    background-color: #2f5d8c !important;
+}
+
+/* Đổi màu nền menu trái */
+.o_menu_systray,
+.o_menu_sections,
+.o_app_drawer,
+.o_home_menu,
+.o_main_navbar {
+    background-color: #8e2430 !important;
+}
+
+/* Đổi màu sidebar bên trái của Muk theme */
+.mk_apps_sidebar,
+.mk_apps_sidebar_panel,
+.mk_sidebar,
+.mk_sidebar_type_large {
+    background-color: #2f5d8c !important;
+}
+
+/* Đổi màu các item menu */
+.mk_apps_sidebar a,
+.mk_sidebar a {
+    color: #ffffff !important;
+}
+
+/* Màu khi hover */
+.mk_apps_sidebar a:hover,
+.mk_sidebar a:hover {
+    background-color: #3f78b5 !important;
+}
+
+/* Màu menu đang chọn */
+.mk_apps_sidebar .active,
+.mk_sidebar .active,
+.o_app.active {
+    background-color: #21496f !important;
+}
